@@ -1,0 +1,80 @@
+.sidebar_div {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .sidebar_div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 4;
+    width: 100vw;
+    background-color: white;
+    padding: 50px 20px;
+    width: 80vw;
+    margin-left: -460px;
+    transition: 0.5s;
+    display: block;
+  }
+
+  .sidebar_blur_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 3;
+    width: 100vw;
+    background-color: rgb(0.5, 0.5, 0.5, 0.5);
+    width: 100vw;
+    display: none;
+  }
+
+  .sidebar_opened {
+    margin-left: 0px;
+    transition: 0.5s;
+  }
+
+  .sidebar_blur_bg_opened {
+    margin-left: 0px;
+    display: block;
+  }
+
+  .sidebar_ul {
+    list-style-type: none;
+  }
+
+  .sidebar_li {
+    margin-top: 10px;
+  }
+
+  .sidebar_sub_ul {
+    list-style-type: none;
+    display: none;
+  }
+
+  .sidebar_sub_ul li {
+    margin-top: 5px;
+  }
+
+  .active_sidebar_sub_services_li {
+    display: block;
+  }
+
+  .active_sidebar_sub_blog_li {
+    display: block;
+  }
+
+  .sidebar_down_icon {
+    font-size: 12px;
+  }
+
+  .sidebar_link li {
+    color: black;
+  }
+
+  .sidebar_link {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,24 @@
+.about_header_card {
+  padding-top: 5%;
+}
+
+.card_row {
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card_row p {
+  font-size: 15px;
+  background-color: orangered;
+  padding: 5px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  color: white;
+}
+
+.about_text {
+  font-size: 20px;
+}
