@@ -14,13 +14,23 @@ const App = () => {
   return (
     <>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/home" component={Home} />
         <Route exact path="/about" component={About} />
         <Route exact path="/services" component={Services} />
         <Route exact path="/services-details" component={ServicesDetails} />
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/blog-details" component={BlogDetails} />
-        <Route exact path="/login" component={Login} />
+
+        {JSON.parse(localStorage.getItem("admin-info")) ===
+        "Login Successful" ? (
+          <>
+            <Route exact path="/" component={Home} />
+          </>
+        ) : (
+          <>
+            <Route exact path="/" component={Login} />
+          </>
+        )}
       </Switch>
     </>
   );

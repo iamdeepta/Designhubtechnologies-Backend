@@ -10,10 +10,13 @@ import ReactDOM from "react-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import { useHistory } from "react-router";
 
 const Header = () => {
   const [openService, setOpenService] = useState(true);
   const [openBlog, setOpenBlog] = useState(true);
+
+  const history = useHistory();
 
   //   function closeSidebar() {
   //     let element = document.getElementById("sidebar__area");
@@ -44,6 +47,11 @@ const Header = () => {
     setOpenBlog(!openBlog);
   }
 
+  function logout() {
+    localStorage.removeItem("admin-info");
+    history.push("/");
+  }
+
   return (
     <>
       <div className="header_div">
@@ -51,7 +59,7 @@ const Header = () => {
           <p className="header_logo">Designhub Technologies</p>
           <div className="header_list_div">
             <p>
-              <Link to="/" className="header_home_text">
+              <Link to="/home" className="header_home_text">
                 Home
               </Link>
             </p>
@@ -118,12 +126,12 @@ const Header = () => {
             </div>
           </div>
           <div className="header_logout_div">
-            <a href=".">
-              <p className="header_logout_text">
+            <Link to="#">
+              <p className="header_logout_text" onClick={() => logout()}>
                 <FontAwesomeIcon icon={faSignOutAlt} className="header_icon" />
                 Logout
               </p>
-            </a>
+            </Link>
           </div>
           <div className="header_hamburger_div" onClick={() => openSidebar()}>
             <Link to="#">

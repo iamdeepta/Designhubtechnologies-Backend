@@ -33,7 +33,7 @@ const Sidebar = () => {
     <>
       <div className="sidebar_div" id="sidebar_div">
         <ul className="sidebar_ul">
-          <Link to="/" className="sidebar_link">
+          <Link to="/home" className="sidebar_link">
             <li className="sidebar_li">Home</li>
           </Link>
           <hr />
@@ -87,6 +87,10 @@ const Sidebar = () => {
               </Link>
             </ul>
           </li>
+          <hr />
+          <Link to="/" className="sidebar_link">
+            <li className="sidebar_li">Logout</li>
+          </Link>
         </ul>
       </div>
 

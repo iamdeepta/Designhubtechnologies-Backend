@@ -20,3 +20,131 @@
   margin-left: 10px;
   cursor: pointer;
 }
+
+.home_section_modal {
+  position: fixed;
+  top: 10%;
+  left: 30%;
+  width: 40vw;
+  height: auto;
+  z-index: 4;
+}
+
+.active_home_section_modal {
+  display: block;
+}
+
+.inactive_home_section_modal {
+  display: none;
+}
+
+.home_section_modal .card-body div .btn {
+  margin-top: 20px;
+}
+
+.modal_blur_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+  width: 100vw;
+  background-color: rgb(0.5, 0.5, 0.5, 0.5);
+  width: 100vw;
+}
+
+.active_modal_blur_bg {
+  display: block;
+}
+
+.inactive_modal_blur_bg {
+  display: none;
+}
+
+.home_section_modal .card-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+/* update modal */
+.home_section_modal_update {
+  position: fixed;
+  top: 10%;
+  left: 30%;
+  width: 40vw;
+  height: auto;
+  z-index: 4;
+}
+
+.active_home_section_modal_update {
+  display: block;
+}
+
+.inactive_home_section_modal_update {
+  display: none;
+}
+
+.home_section_modal_update .card-body div .btn {
+  margin-top: 20px;
+}
+
+.home_section_modal_update .card-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+/* delete modal */
+.home_section_modal_delete {
+  position: fixed;
+  top: 10%;
+  left: 30%;
+  width: 40vw;
+  height: auto;
+  z-index: 4;
+}
+
+.active_home_section_modal_delete {
+  display: block;
+}
+
+.inactive_home_section_modal_delete {
+  display: none;
+}
+
+.home_section_modal_delete .card-body div .btn {
+  margin-top: 20px;
+}
+
+.home_section_modal_delete .card-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 600px) {
+  .home_section_modal {
+    left: 10%;
+    width: 80vw;
+    height: auto;
+    z-index: 4;
+  }
+
+  .home_section_modal_update {
+    left: 10%;
+    width: 80vw;
+    height: auto;
+    z-index: 4;
+    top: 15%;
+  }
+
+  .home_section_modal_delete {
+    left: 10%;
+    width: 80vw;
+    height: auto;
+    z-index: 4;
+    top: 25%;
+  }
+}
