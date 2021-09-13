@@ -22,3 +22,9 @@
 .about_text {
   font-size: 20px;
 }
+
+@media screen and (max-width: 900px) {
+  .about_header_card {
+    padding-top: 15%;
+  }
+}

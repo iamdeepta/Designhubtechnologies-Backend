@@ -1,0 +1,32 @@
+.login_div {
+  position: fixed;
+  top: 30%;
+  left: 38%;
+  z-index: 2;
+  width: 25vw;
+  height: 40vh;
+}
+
+.login_logo {
+  width: 250px;
+  height: 50px;
+}
+
+.login_card_header {
+  text-align: center;
+}
+
+.login_btn {
+  width: 100%;
+}
+
+.login_card_header {
+  background-color: rgb(215, 229, 253) !important;
+}
+
+@media screen and (max-width: 600px) {
+  .login_div {
+    left: 5%;
+    width: 90vw;
+  }
+}

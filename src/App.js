@@ -7,6 +7,7 @@ import ServicesDetails from "./pages/ServicesDetails";
 import Services from "./pages/Services";
 import Blog from "./pages/Blog";
 import BlogDetails from "./pages/BlogDetails";
+import Login from "./pages/Login";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <Route exact path="/services-details" component={ServicesDetails} />
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/blog-details" component={BlogDetails} />
+        <Route exact path="/login" component={Login} />
       </Switch>
     </>
   );
