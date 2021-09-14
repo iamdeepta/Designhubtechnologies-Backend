@@ -124,6 +124,11 @@
   flex-direction: row;
 }
 
+td img {
+  width: 120px;
+  height: 80px;
+}
+
 @media screen and (max-width: 600px) {
   .home_section_modal {
     left: 10%;
