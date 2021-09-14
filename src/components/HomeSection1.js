@@ -25,9 +25,21 @@ const HomeSection1 = () => {
   //   getData();
   // }, []);
 
+  //update states
+  const [title_up, setTitleUp] = useState("");
+  const [description_up, setDescriptionUp] = useState("");
+  const [category_up, setCategoryUp] = useState("");
+
   useEffect(() => {
     getData();
   }, []);
+
+  //update states useEffect
+  useEffect(() => {
+    setTitleUp(data.homesection1_title);
+    setDescriptionUp(data.homesection1_description);
+    setCategoryUp(data.homesection1_category);
+  }, [data]);
 
   function getData() {
     axios
@@ -35,6 +47,7 @@ const HomeSection1 = () => {
       .then(function (response) {
         if (response) {
           setData(response.data);
+
           console.log(response.data);
         }
       })
@@ -42,13 +55,6 @@ const HomeSection1 = () => {
         console.log(error);
       });
   }
-
-  //update states
-  const [title_up, setTitleUp] = useState(data.homesection1_title);
-  const [description_up, setDescriptionUp] = useState(
-    data.homesection1_description
-  );
-  const [category_up, setCategoryUp] = useState(data.homesection1_category);
 
   // async function getData() {
   //   let result = await fetch(AppUrl.base_url + "homesection1Get");
