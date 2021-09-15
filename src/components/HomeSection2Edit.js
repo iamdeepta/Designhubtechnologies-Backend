@@ -1,9 +1,10 @@
 import React from "react";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import { faTimes } from "@fortawesome/free-solid-svg-icons";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import AppUrl from "../classes/AppUrl";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+//import { ToastContainer, toast } from "react-toastify";
 
 const HomeSection2Edit = ({
   main_title_data,
@@ -11,6 +12,7 @@ const HomeSection2Edit = ({
   description_data,
   category_data,
   id_data,
+  edit_data,
   get_data,
   close_update_modal,
 }) => {
@@ -47,7 +49,7 @@ const HomeSection2Edit = ({
 
   return (
     <>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
 
       <div className="card-body">
         <label>Main Title:</label>

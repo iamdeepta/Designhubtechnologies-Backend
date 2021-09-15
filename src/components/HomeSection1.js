@@ -48,7 +48,7 @@ const HomeSection1 = () => {
         if (response) {
           setData(response.data);
 
-          console.log(response.data);
+          //console.log(response.data);
         }
       })
       .catch(function (error) {
