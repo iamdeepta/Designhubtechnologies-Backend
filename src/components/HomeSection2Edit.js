@@ -14,6 +14,7 @@ const HomeSection2Edit = ({
   id_data,
   edit_data,
   get_data,
+  index_data,
   close_update_modal,
 }) => {
   //update states
@@ -58,7 +59,7 @@ const HomeSection2Edit = ({
             type="text"
             placeholder="Main Title"
             className="form-control"
-            defaultValue={main_title_up}
+            value={main_title_up}
             onChange={(e) => setMainTitleUp(e.target.value)}
           />
         </div>
@@ -69,7 +70,7 @@ const HomeSection2Edit = ({
             type="text"
             placeholder="Title"
             className="form-control"
-            defaultValue={title_up}
+            value={title_up}
             onChange={(e) => setTitleUp(e.target.value)}
           />
         </div>
@@ -80,7 +81,7 @@ const HomeSection2Edit = ({
             type="text"
             placeholder="Description"
             className="form-control"
-            defaultValue={description_up}
+            value={description_up}
             onChange={(e) => setDescriptionUp(e.target.value)}
           />
         </div>
@@ -91,7 +92,7 @@ const HomeSection2Edit = ({
             type="text"
             placeholder="Category"
             className="form-control"
-            defaultValue={category_up}
+            value={category_up}
             onChange={(e) => setCategoryUp(e.target.value)}
           />
         </div>

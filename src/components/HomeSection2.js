@@ -257,7 +257,7 @@ const HomeSection2 = () => {
           </thead>
           <tbody>
             {data.map((item, index) => (
-              <tr key={index}>
+              <tr key={item.homesection2_id}>
                 <td>{item.homesection2_main_title}</td>
                 <td>
                   <img
@@ -303,7 +303,8 @@ const HomeSection2 = () => {
                       description_data={item.homesection2_description}
                       category_data={item.homesection2_category}
                       id_data={item.homesection2_id}
-                      edit_data={item}
+                      edit_data={data}
+                      index_data={index}
                       get_data={getData}
                       close_update_modal={() =>
                         closeUpdateModal(item.homesection2_id)
