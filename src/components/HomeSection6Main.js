@@ -9,19 +9,17 @@ import AppUrl from "../classes/AppUrl";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import HomeSection2Edit from "./HomeSection2Edit";
+import HomeSection6MainEdit from "./HomeSection6MainEdit";
 
-const HomeSection2 = () => {
+const HomeSection6Main = () => {
   const [main_title, setMainTitle] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
+  const [main_description, setMainDescription] = useState("");
+  const [main_image, setMainImage] = useState("");
 
-  const [data, setData] = useState([]);
+  const [main_data, setMainData] = useState([]);
 
   //update image state
-  const [image_up, setImageUp] = useState("");
+  const [main_image_up, setMainImageUp] = useState("");
 
   // useEffect(() => {
   //   getData();
@@ -34,7 +32,7 @@ const HomeSection2 = () => {
   // const [category_up, setCategoryUp] = useState("");
 
   useEffect(() => {
-    getData();
+    getMainData();
   }, []);
 
   //update states useEffect
@@ -46,12 +44,12 @@ const HomeSection2 = () => {
   //   setDescriptionUp(des);
   // }
 
-  function getData() {
+  function getMainData() {
     axios
-      .get(AppUrl.base_url + "homesection2Get")
+      .get(AppUrl.base_url + "homesection6MainGet")
       .then(function (response) {
         if (response) {
-          setData(response.data);
+          setMainData(response.data);
 
           //console.log(response.data);
         }
@@ -70,15 +68,13 @@ const HomeSection2 = () => {
   // }
 
   //add data
-  async function addData() {
+  async function addMainData() {
     const formData = new FormData();
     formData.append("main_title", main_title);
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("category", category);
-    formData.append("image", image);
+    formData.append("main_description", main_description);
+    formData.append("main_image", main_image);
 
-    let result = await fetch(AppUrl.base_url + "homesection2Add", {
+    let result = await fetch(AppUrl.base_url + "homesection6MainAdd", {
       method: "POST",
       body: formData,
     });
@@ -88,24 +84,22 @@ const HomeSection2 = () => {
     if (result.success) {
       toast.success(result.success);
       setMainTitle("");
-      setTitle("");
-      setDescription("");
-      setCategory("");
-      setImage("");
+      setMainDescription("");
+      setMainImage("");
     } else {
       toast.error(result.error);
     }
 
-    getData();
+    getMainData();
   }
 
   //update image
-  async function updateImage(name, id) {
+  async function updateMainImage(name, id) {
     const formData = new FormData();
-    formData.append("image_up", image_up);
+    formData.append("main_image_up", main_image_up);
 
     let result = await fetch(
-      AppUrl.base_url + "homesection2UpdateImage/" + name,
+      AppUrl.base_url + "homesection6MainUpdateImage/" + name,
       {
         method: "POST",
         body: formData,
@@ -117,16 +111,16 @@ const HomeSection2 = () => {
     if (result.success) {
       toast.success(result.success);
 
-      getData();
-      closeUpdateImageModal(name, id);
+      getMainData();
+      closeUpdateImageModalMain(name, id);
     } else {
       toast.error(result.error);
     }
   }
 
   //delete data
-  async function deleteData(id) {
-    let result = await fetch(AppUrl.base_url + "homesection2Delete/" + id, {
+  async function deleteMainData(id) {
+    let result = await fetch(AppUrl.base_url + "homesection6MainDelete/" + id, {
       method: "POST",
     });
 
@@ -138,8 +132,8 @@ const HomeSection2 = () => {
       toast.error(result.error);
     }
 
-    getData();
-    closeDeleteModal(id);
+    getMainData();
+    closeDeleteModalMain(id);
   }
 
   // let title1;
@@ -172,8 +166,8 @@ const HomeSection2 = () => {
   //   }
   // }
 
-  function openModal() {
-    let element = document.getElementById("home_section_modal");
+  function openModalMain() {
+    let element = document.getElementById("home_section_modal_main");
     ReactDOM.findDOMNode(element).classList.add("active_home_section_modal");
     ReactDOM.findDOMNode(element).classList.remove(
       "inactive_home_section_modal"
@@ -184,8 +178,8 @@ const HomeSection2 = () => {
     ReactDOM.findDOMNode(element1).classList.remove("inactive_modal_blur_bg");
   }
 
-  function closeModalAdd() {
-    let element = document.getElementById("home_section_modal");
+  function closeModalAddMain() {
+    let element = document.getElementById("home_section_modal_main");
     ReactDOM.findDOMNode(element).classList.add("inactive_home_section_modal");
     ReactDOM.findDOMNode(element).classList.remove("active_home_section_modal");
 
@@ -194,18 +188,20 @@ const HomeSection2 = () => {
     ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
   }
 
-  function closeModal(id, id1) {
+  function closeModalMain(id, id1) {
     let element1 = document.getElementById("modal_blur_bg" + id);
     ReactDOM.findDOMNode(element1).classList.add("inactive_modal_blur_bg");
     ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
 
-    closeUpdateModal(id);
-    closeDeleteModal(id);
-    closeUpdateImageModal(id1, id);
+    closeUpdateModalMain(id);
+    closeDeleteModalMain(id);
+    closeUpdateImageModalMain(id1, id);
   }
 
-  function openUpdateModal(id) {
-    let element = document.getElementById("home_section_modal_update" + id);
+  function openUpdateModalMain(id) {
+    let element = document.getElementById(
+      "home_section_modal_update_main" + id
+    );
     ReactDOM.findDOMNode(element).classList.add(
       "active_home_section_modal_update"
     );
@@ -218,8 +214,10 @@ const HomeSection2 = () => {
     ReactDOM.findDOMNode(element1).classList.remove("inactive_modal_blur_bg");
   }
 
-  function closeUpdateModal(id) {
-    let element = document.getElementById("home_section_modal_update" + id);
+  function closeUpdateModalMain(id) {
+    let element = document.getElementById(
+      "home_section_modal_update_main" + id
+    );
     ReactDOM.findDOMNode(element).classList.add(
       "inactive_home_section_modal_update"
     );
@@ -232,8 +230,10 @@ const HomeSection2 = () => {
     ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
   }
 
-  function openDeleteModal(id) {
-    let element = document.getElementById("home_section_modal_delete" + id);
+  function openDeleteModalMain(id) {
+    let element = document.getElementById(
+      "home_section_modal_delete_main" + id
+    );
     ReactDOM.findDOMNode(element).classList.add(
       "active_home_section_modal_delete"
     );
@@ -246,8 +246,10 @@ const HomeSection2 = () => {
     ReactDOM.findDOMNode(element1).classList.remove("inactive_modal_blur_bg");
   }
 
-  function closeDeleteModal(id) {
-    let element = document.getElementById("home_section_modal_delete" + id);
+  function closeDeleteModalMain(id) {
+    let element = document.getElementById(
+      "home_section_modal_delete_main" + id
+    );
     ReactDOM.findDOMNode(element).classList.add(
       "inactive_home_section_modal_delete"
     );
@@ -260,7 +262,7 @@ const HomeSection2 = () => {
     ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
   }
 
-  function openModalImage(id, id1) {
+  function openModalImageMain(id, id1) {
     let element = document.getElementById(id);
     ReactDOM.findDOMNode(element).classList.add(
       "active_home_section_modal_image_update"
@@ -274,7 +276,7 @@ const HomeSection2 = () => {
     ReactDOM.findDOMNode(element1).classList.remove("inactive_modal_blur_bg");
   }
 
-  function closeUpdateImageModal(id, id1) {
+  function closeUpdateImageModalMain(id, id1) {
     let element = document.getElementById(id);
     ReactDOM.findDOMNode(element).classList.add(
       "inactive_home_section_modal_image_update"
@@ -293,10 +295,10 @@ const HomeSection2 = () => {
       <ToastContainer />
       <div className="container home_section_div">
         <div className="home_sections_title">
-          <h4>Section 2</h4>
+          <h4>Section 6 Main Content</h4>
           <button
             className="btn btn-primary btn-sm home_sections_btn_add"
-            onClick={() => openModal()}
+            onClick={() => openModalMain()}
           >
             Add
           </button>
@@ -304,74 +306,75 @@ const HomeSection2 = () => {
         <table className="table table-responsive table-striped table-bordered">
           <thead className="thead-dark">
             <tr>
-              <th scope="col">Main Title</th>
-              <th scope="col">Image</th>
               <th scope="col">Title</th>
               <th scope="col">Description</th>
-              <th scope="col">Category</th>
+              <th scope="col">Image</th>
 
               <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
-              <tr key={item.homesection2_id}>
-                <td>{item.homesection2_main_title}</td>
+            {main_data.map((item, index) => (
+              <tr key={item.homesection6_main_id}>
+                <td>{item.homesection6_main_title}</td>
+                <td>{item.homesection6_main_description}</td>
                 <td>
                   <img
-                    src={AppUrl.image_url + item.homesection2_image}
-                    alt={item.homesection2_title + " image"}
+                    src={AppUrl.image_url + item.homesection6_main_image}
+                    alt={item.homesection6_main_title + " image"}
                     onClick={() =>
-                      openModalImage(
-                        item.homesection2_image,
-                        item.homesection2_id
+                      openModalImageMain(
+                        item.homesection6_main_image,
+                        item.homesection6_main_id
                       )
                     }
                   />
                 </td>
 
-                <td>{item.homesection2_title}</td>
-                <td>{item.homesection2_description}</td>
-                <td>{item.homesection2_category}</td>
-
                 <td>
                   <FontAwesomeIcon
                     icon={faEdit}
                     className="home_section_edit"
-                    onClick={() => openUpdateModal(item.homesection2_id)}
+                    onClick={() =>
+                      openUpdateModalMain(item.homesection6_main_id)
+                    }
                   />
                   <FontAwesomeIcon
                     icon={faTimes}
                     className="home_section_delete"
-                    onClick={() => openDeleteModal(item.homesection2_id)}
+                    onClick={() =>
+                      openDeleteModalMain(item.homesection6_main_id)
+                    }
                   />
                 </td>
 
                 {/* update data modal */}
                 <div
                   className="home_section_modal_update inactive_home_section_modal_update"
-                  id={"home_section_modal_update" + item.homesection2_id}
+                  id={
+                    "home_section_modal_update_main" + item.homesection6_main_id
+                  }
                 >
                   <div className="card">
                     <div className="card-header">
-                      <p>Update Section 2 Data</p>
+                      <p>Update Section 6 Main Data</p>
                       <FontAwesomeIcon
                         icon={faTimes}
                         className="home_section_delete"
-                        onClick={() => closeUpdateModal(item.homesection2_id)}
+                        onClick={() =>
+                          closeUpdateModalMain(item.homesection6_main_id)
+                        }
                       />
                     </div>
-                    <HomeSection2Edit
-                      main_title_data={item.homesection2_main_title}
-                      title_data={item.homesection2_title}
-                      description_data={item.homesection2_description}
-                      category_data={item.homesection2_category}
-                      id_data={item.homesection2_id}
-                      edit_data={data}
+                    <HomeSection6MainEdit
+                      title_data={item.homesection6_main_title}
+                      description_data={item.homesection6_main_description}
+                      id_data={item.homesection6_main_id}
+                      edit_data={main_data}
                       index_data={index}
-                      get_data={getData}
+                      get_data={getMainData}
                       close_update_modal={() =>
-                        closeUpdateModal(item.homesection2_id)
+                        closeUpdateModalMain(item.homesection6_main_id)
                       }
                     />
                   </div>
@@ -380,7 +383,7 @@ const HomeSection2 = () => {
                 {/* image update modal */}
                 <div
                   className="home_section_modal_image_update inactive_home_section_modal_image_update"
-                  id={item.homesection2_image}
+                  id={item.homesection6_main_image}
                 >
                   <div className="card">
                     <div className="card-header">
@@ -389,9 +392,9 @@ const HomeSection2 = () => {
                         icon={faTimes}
                         className="home_section_delete"
                         onClick={() =>
-                          closeUpdateImageModal(
-                            item.homesection2_image,
-                            item.homesection2_id
+                          closeUpdateImageModalMain(
+                            item.homesection6_main_image,
+                            item.homesection6_main_id
                           )
                         }
                       />
@@ -403,7 +406,7 @@ const HomeSection2 = () => {
                           type="file"
                           placeholder="Image"
                           className="form-control"
-                          onChange={(e) => setImageUp(e.target.files[0])}
+                          onChange={(e) => setMainImageUp(e.target.files[0])}
                         />
                       </div>
 
@@ -412,9 +415,9 @@ const HomeSection2 = () => {
                           className="btn btn-success form-control"
                           type="button"
                           onClick={() =>
-                            updateImage(
-                              item.homesection2_image,
-                              item.homesection2_id
+                            updateMainImage(
+                              item.homesection6_main_image,
+                              item.homesection6_main_id
                             )
                           }
                         >
@@ -428,15 +431,19 @@ const HomeSection2 = () => {
                 {/* delete data modal */}
                 <div
                   className="home_section_modal_delete inactive_home_section_modal_delete"
-                  id={"home_section_modal_delete" + item.homesection2_id}
+                  id={
+                    "home_section_modal_delete_main" + item.homesection6_main_id
+                  }
                 >
                   <div className="card">
                     <div className="card-header">
-                      <p>Delete Section 2 Data</p>
+                      <p>Delete Section 6 Main Data</p>
                       <FontAwesomeIcon
                         icon={faTimes}
                         className="home_section_delete"
-                        onClick={() => closeDeleteModal(item.homesection2_id)}
+                        onClick={() =>
+                          closeDeleteModalMain(item.homesection6_main_id)
+                        }
                       />
                     </div>
                     <div className="card-body">
@@ -446,7 +453,9 @@ const HomeSection2 = () => {
                         <button
                           className="btn btn-danger form-control"
                           type="button"
-                          onClick={() => deleteData(item.homesection2_id)}
+                          onClick={() =>
+                            deleteMainData(item.homesection6_main_id)
+                          }
                         >
                           Delete
                         </button>
@@ -458,9 +467,12 @@ const HomeSection2 = () => {
                 {/* blur bg overlay */}
                 <div
                   className="modal_blur_bg inactive_modal_blur_bg"
-                  id={"modal_blur_bg" + item.homesection2_id}
+                  id={"modal_blur_bg" + item.homesection6_main_id}
                   onClick={() =>
-                    closeModal(item.homesection2_id, item.homesection2_image)
+                    closeModalMain(
+                      item.homesection6_main_id,
+                      item.homesection6_main_image
+                    )
                   }
                 ></div>
               </tr>
@@ -472,37 +484,26 @@ const HomeSection2 = () => {
       {/* add data modal */}
       <div
         className="home_section_modal inactive_home_section_modal"
-        id="home_section_modal"
+        id="home_section_modal_main"
       >
         <div className="card">
           <div className="card-header">
-            <p>Add Section 2 Data</p>
+            <p>Add Section 6 Main Content Data</p>
             <FontAwesomeIcon
               icon={faTimes}
               className="home_section_delete"
-              onClick={() => closeModalAdd()}
+              onClick={() => closeModalAddMain()}
             />
           </div>
           <div className="card-body">
-            <label>Main Title:</label>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Main Title"
-                className="form-control"
-                value={main_title}
-                onChange={(e) => setMainTitle(e.target.value)}
-              />
-            </div>
-
             <label>Title:</label>
             <div className="form-group">
               <input
                 type="text"
                 placeholder="Title"
                 className="form-control"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={main_title}
+                onChange={(e) => setMainTitle(e.target.value)}
               />
             </div>
 
@@ -512,19 +513,8 @@ const HomeSection2 = () => {
                 type="text"
                 placeholder="Description"
                 className="form-control"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
-
-            <label>Category:</label>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Category"
-                className="form-control"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                value={main_description}
+                onChange={(e) => setMainDescription(e.target.value)}
               />
             </div>
 
@@ -533,7 +523,7 @@ const HomeSection2 = () => {
               <input
                 type="file"
                 className="form-control"
-                onChange={(e) => setImage(e.target.files[0])}
+                onChange={(e) => setMainImage(e.target.files[0])}
               />
             </div>
 
@@ -541,7 +531,7 @@ const HomeSection2 = () => {
               <button
                 className="btn btn-primary form-control"
                 type="button"
-                onClick={() => addData()}
+                onClick={() => addMainData()}
               >
                 Add
               </button>
@@ -554,10 +544,10 @@ const HomeSection2 = () => {
       <div
         className="modal_blur_bg inactive_modal_blur_bg"
         id="modal_blur_bg_add"
-        onClick={() => closeModalAdd()}
+        onClick={() => closeModalAddMain()}
       ></div>
     </>
   );
 };
 
-export default HomeSection2;
+export default HomeSection6Main;

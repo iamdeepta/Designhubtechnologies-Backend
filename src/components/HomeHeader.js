@@ -9,6 +9,8 @@ import HomeSection5 from "./HomeSection5";
 import HomeSection6 from "./HomeSection6";
 import HomeSection7 from "./HomeSection7";
 import HomeSection8 from "./HomeSection8";
+import HomeSection6Main from "./HomeSection6Main";
+import HomeSection7Main from "./HomeSection7Main";
 
 const HomeHeader = () => {
   const [section1, setSection1] = useState(false);
@@ -131,8 +133,24 @@ const HomeHeader = () => {
       {section3 ? <HomeSection3 /> : ""}
       {section4 ? <HomeSection4 /> : ""}
       {section5 ? <HomeSection5 /> : ""}
-      {section6 ? <HomeSection6 /> : ""}
-      {section7 ? <HomeSection7 /> : ""}
+      {section6 ? (
+        <>
+          <HomeSection6 />
+          <br />
+          <HomeSection6Main />
+        </>
+      ) : (
+        ""
+      )}
+      {section7 ? (
+        <>
+          <HomeSection7 />
+          <br />
+          <HomeSection7Main />
+        </>
+      ) : (
+        ""
+      )}
       {section8 ? <HomeSection8 /> : ""}
     </>
   );

@@ -30,6 +30,11 @@ const HomeSection1 = () => {
   const [description_up, setDescriptionUp] = useState("");
   const [category_up, setCategoryUp] = useState("");
 
+  const [image1_up, setImage1Up] = useState("");
+  const [image2_up, setImage2Up] = useState("");
+  const [image3_up, setImage3Up] = useState("");
+  const [image4_up, setImage4Up] = useState("");
+
   useEffect(() => {
     getData();
   }, []);
@@ -116,11 +121,6 @@ const HomeSection1 = () => {
     closeDeleteModal(id);
   }
 
-  // let title1;
-  // data.map((item) => (title1 = item.homesection1_title));
-
-  //console.log(title_up);
-
   //update data
   async function updateData(id) {
     const formData = new FormData();
@@ -140,6 +140,106 @@ const HomeSection1 = () => {
 
       getData();
       closeUpdateModal(id);
+    } else {
+      toast.error(result.error);
+    }
+  }
+
+  //update image1
+  async function updateImage1(name) {
+    const formData = new FormData();
+    formData.append("image1_up", image1_up);
+
+    let result = await fetch(
+      AppUrl.base_url + "homesection1UpdateImage1/" + name,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    result = await result.json();
+
+    if (result.success) {
+      toast.success(result.success);
+
+      getData();
+      closeUpdateImageModal(name);
+    } else {
+      toast.error(result.error);
+    }
+  }
+
+  //update image2
+  async function updateImage2(name) {
+    const formData = new FormData();
+    formData.append("image2_up", image2_up);
+
+    let result = await fetch(
+      AppUrl.base_url + "homesection1UpdateImage2/" + name,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    result = await result.json();
+
+    if (result.success) {
+      toast.success(result.success);
+
+      getData();
+      closeUpdateImageModal(name);
+    } else {
+      toast.error(result.error);
+    }
+  }
+
+  //update image3
+  async function updateImage3(name) {
+    const formData = new FormData();
+    formData.append("image3_up", image3_up);
+
+    let result = await fetch(
+      AppUrl.base_url + "homesection1UpdateImage3/" + name,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    result = await result.json();
+
+    if (result.success) {
+      toast.success(result.success);
+
+      getData();
+      closeUpdateImageModal(name);
+    } else {
+      toast.error(result.error);
+    }
+  }
+
+  //update image4
+  async function updateImage4(name) {
+    const formData = new FormData();
+    formData.append("image4_up", image4_up);
+
+    let result = await fetch(
+      AppUrl.base_url + "homesection1UpdateImage4/" + name,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    result = await result.json();
+
+    if (result.success) {
+      toast.success(result.success);
+
+      getData();
+      closeUpdateImageModal(name);
     } else {
       toast.error(result.error);
     }
@@ -168,6 +268,10 @@ const HomeSection1 = () => {
 
     closeUpdateModal(id);
     closeDeleteModal(id);
+    closeUpdateImageModal(data.homesection1_image1);
+    closeUpdateImageModal(data.homesection1_image2);
+    closeUpdateImageModal(data.homesection1_image3);
+    closeUpdateImageModal(data.homesection1_image4);
   }
 
   function openUpdateModal(id) {
@@ -225,6 +329,34 @@ const HomeSection1 = () => {
     ReactDOM.findDOMNode(element1).classList.add("inactive_modal_blur_bg");
     ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
   }
+
+  function openModalImage(id) {
+    let element = document.getElementById(id);
+    ReactDOM.findDOMNode(element).classList.add(
+      "active_home_section_modal_image_update"
+    );
+    ReactDOM.findDOMNode(element).classList.remove(
+      "inactive_home_section_modal_image_update"
+    );
+
+    let element1 = document.getElementById("modal_blur_bg");
+    ReactDOM.findDOMNode(element1).classList.add("active_modal_blur_bg");
+    ReactDOM.findDOMNode(element1).classList.remove("inactive_modal_blur_bg");
+  }
+
+  function closeUpdateImageModal(id) {
+    let element = document.getElementById(id);
+    ReactDOM.findDOMNode(element).classList.add(
+      "inactive_home_section_modal_image_update"
+    );
+    ReactDOM.findDOMNode(element).classList.remove(
+      "active_home_section_modal_image_update"
+    );
+
+    let element1 = document.getElementById("modal_blur_bg");
+    ReactDOM.findDOMNode(element1).classList.add("inactive_modal_blur_bg");
+    ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
+  }
   return (
     <>
       <ToastContainer />
@@ -262,24 +394,28 @@ const HomeSection1 = () => {
                     <img
                       src={AppUrl.image_url + data.homesection1_image1}
                       alt={data.homesection1_title + " image1"}
+                      onClick={() => openModalImage(data.homesection1_image1)}
                     />
                   </td>
                   <td>
                     <img
                       src={AppUrl.image_url + data.homesection1_image2}
                       alt={data.homesection1_title + " image2"}
+                      onClick={() => openModalImage(data.homesection1_image2)}
                     />
                   </td>
                   <td>
                     <img
                       src={AppUrl.image_url + data.homesection1_image3}
                       alt={data.homesection1_title + " image3"}
+                      onClick={() => openModalImage(data.homesection1_image3)}
                     />
                   </td>
                   <td>
                     <img
                       src={AppUrl.image_url + data.homesection1_image4}
                       alt={data.homesection1_title + " image4"}
+                      onClick={() => openModalImage(data.homesection1_image4)}
                     />
                   </td>
 
@@ -454,6 +590,158 @@ const HomeSection1 = () => {
                 className="btn btn-success form-control"
                 type="button"
                 onClick={() => updateData(data.homesection1_id)}
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* image1 update modal */}
+      <div
+        className="home_section_modal_image_update inactive_home_section_modal_image_update"
+        id={data.homesection1_image1}
+      >
+        <div className="card">
+          <div className="card-header">
+            <p>Update Image 1 Data</p>
+            <FontAwesomeIcon
+              icon={faTimes}
+              className="home_section_delete"
+              onClick={() => closeUpdateImageModal(data.homesection1_image1)}
+            />
+          </div>
+          <div className="card-body">
+            <label>Image1:</label>
+            <div className="form-group">
+              <input
+                type="file"
+                placeholder="Image1"
+                className="form-control"
+                onChange={(e) => setImage1Up(e.target.files[0])}
+              />
+            </div>
+
+            <div className="form-group">
+              <button
+                className="btn btn-success form-control"
+                type="button"
+                onClick={() => updateImage1(data.homesection1_image1)}
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* image2 update modal */}
+      <div
+        className="home_section_modal_image_update inactive_home_section_modal_image_update"
+        id={data.homesection1_image2}
+      >
+        <div className="card">
+          <div className="card-header">
+            <p>Update Image 2 Data</p>
+            <FontAwesomeIcon
+              icon={faTimes}
+              className="home_section_delete"
+              onClick={() => closeUpdateImageModal(data.homesection1_image2)}
+            />
+          </div>
+          <div className="card-body">
+            <label>Image2:</label>
+            <div className="form-group">
+              <input
+                type="file"
+                placeholder="Image2"
+                className="form-control"
+                onChange={(e) => setImage2Up(e.target.files[0])}
+              />
+            </div>
+
+            <div className="form-group">
+              <button
+                className="btn btn-success form-control"
+                type="button"
+                onClick={() => updateImage2(data.homesection1_image2)}
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* image3 update modal */}
+      <div
+        className="home_section_modal_image_update inactive_home_section_modal_image_update"
+        id={data.homesection1_image3}
+      >
+        <div className="card">
+          <div className="card-header">
+            <p>Update Image 3 Data</p>
+            <FontAwesomeIcon
+              icon={faTimes}
+              className="home_section_delete"
+              onClick={() => closeUpdateImageModal(data.homesection1_image3)}
+            />
+          </div>
+          <div className="card-body">
+            <label>Image3:</label>
+            <div className="form-group">
+              <input
+                type="file"
+                placeholder="Image3"
+                className="form-control"
+                onChange={(e) => setImage3Up(e.target.files[0])}
+              />
+            </div>
+
+            <div className="form-group">
+              <button
+                className="btn btn-success form-control"
+                type="button"
+                onClick={() => updateImage3(data.homesection1_image3)}
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* image4 update modal */}
+      <div
+        className="home_section_modal_image_update inactive_home_section_modal_image_update"
+        id={data.homesection1_image4}
+      >
+        <div className="card">
+          <div className="card-header">
+            <p>Update Image 4 Data</p>
+            <FontAwesomeIcon
+              icon={faTimes}
+              className="home_section_delete"
+              onClick={() => closeUpdateImageModal(data.homesection1_image4)}
+            />
+          </div>
+          <div className="card-body">
+            <label>Image4:</label>
+            <div className="form-group">
+              <input
+                type="file"
+                placeholder="Image4"
+                className="form-control"
+                onChange={(e) => setImage4Up(e.target.files[0])}
+              />
+            </div>
+
+            <div className="form-group">
+              <button
+                className="btn btn-success form-control"
+                type="button"
+                onClick={() => updateImage4(data.homesection1_image4)}
               >
                 Update
               </button>

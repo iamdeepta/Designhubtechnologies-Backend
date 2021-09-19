@@ -96,6 +96,34 @@
   flex-direction: row;
 }
 
+/* image update modal */
+.home_section_modal_image_update {
+  position: fixed;
+  top: 10%;
+  left: 30%;
+  width: 40vw;
+  height: auto;
+  z-index: 4;
+}
+
+.active_home_section_modal_image_update {
+  display: block;
+}
+
+.inactive_home_section_modal_image_update {
+  display: none;
+}
+
+.home_section_modal_image_update .card-body div .btn {
+  margin-top: 20px;
+}
+
+.home_section_modal_image_update .card-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
 /* delete modal */
 .home_section_modal_delete {
   position: fixed;
@@ -131,6 +159,7 @@ td img {
 
 @media screen and (max-width: 600px) {
   .home_section_modal {
+    position: absolute;
     left: 10%;
     width: 80vw;
     height: auto;
@@ -138,6 +167,14 @@ td img {
   }
 
   .home_section_modal_update {
+    left: 10%;
+    width: 80vw;
+    height: auto;
+    z-index: 4;
+    top: 0%;
+  }
+
+  .home_section_modal_image_update {
     left: 10%;
     width: 80vw;
     height: auto;
