@@ -3,6 +3,7 @@ import "./css/aboutHeader.css";
 import { useState } from "react";
 import AboutSection1 from "./AboutSection1";
 import AboutSection2 from "./AboutSection2";
+import AboutSection1Main from "./AboutSection1Main";
 
 const AboutHeader = () => {
   const [section1, setSection1] = useState(false);
@@ -30,7 +31,15 @@ const AboutHeader = () => {
           </div>
         </div>
       </div>
-      {section1 ? <AboutSection1 /> : ""}
+      {section1 ? (
+        <>
+          <AboutSection1 />
+          <br />
+          <AboutSection1Main />
+        </>
+      ) : (
+        ""
+      )}
       {section2 ? <AboutSection2 /> : ""}
     </>
   );
