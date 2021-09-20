@@ -4,6 +4,7 @@ import { useState } from "react";
 import AboutSection1 from "./AboutSection1";
 import AboutSection2 from "./AboutSection2";
 import AboutSection1Main from "./AboutSection1Main";
+import AboutSection2Main from "./AboutSection2Main";
 
 const AboutHeader = () => {
   const [section1, setSection1] = useState(false);
@@ -40,7 +41,15 @@ const AboutHeader = () => {
       ) : (
         ""
       )}
-      {section2 ? <AboutSection2 /> : ""}
+      {section2 ? (
+        <>
+          <AboutSection2 />
+          <br />
+          <AboutSection2Main />
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 };

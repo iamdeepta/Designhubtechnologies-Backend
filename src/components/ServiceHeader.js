@@ -3,6 +3,7 @@ import "./css/aboutHeader.css";
 import { useState } from "react";
 import ServiceSection1 from "./ServiceSection1";
 import ServiceSection2 from "./ServiceSection2";
+import ServiceSection1Main from "./ServiceSection1Main";
 
 const ServiceHeader = () => {
   const [section1, setSection1] = useState(false);
@@ -30,7 +31,15 @@ const ServiceHeader = () => {
           </div>
         </div>
       </div>
-      {section1 ? <ServiceSection1 /> : ""}
+      {section1 ? (
+        <>
+          <ServiceSection1 />
+          <br />
+          <ServiceSection1Main />
+        </>
+      ) : (
+        ""
+      )}
       {section2 ? <ServiceSection2 /> : ""}
     </>
   );
