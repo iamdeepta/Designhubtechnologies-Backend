@@ -23,11 +23,12 @@
 
 .home_section_modal {
   position: fixed;
-  top: 10%;
+  top: 0%;
   left: 30%;
   width: 40vw;
-  height: auto;
+  max-height: 100%;
   z-index: 4;
+  overflow-y: scroll;
 }
 
 .active_home_section_modal {
@@ -71,11 +72,12 @@
 /* update modal */
 .home_section_modal_update {
   position: fixed;
-  top: 10%;
+  top: 0%;
   left: 30%;
   width: 40vw;
-  height: auto;
+  max-height: 100%;
   z-index: 4;
+  overflow-y: scroll;
 }
 
 .active_home_section_modal_update {
@@ -157,19 +159,24 @@ td img {
   height: 80px;
 }
 
+textarea {
+  white-space: pre-line;
+}
+
+.blogsection_description_td {
+  white-space: pre-line;
+}
+
 @media screen and (max-width: 600px) {
   .home_section_modal {
-    position: absolute;
     left: 10%;
     width: 80vw;
-    height: auto;
     z-index: 4;
   }
 
   .home_section_modal_update {
     left: 10%;
     width: 80vw;
-    height: auto;
     z-index: 4;
     top: 0%;
   }

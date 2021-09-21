@@ -40,7 +40,13 @@ const ServiceHeader = () => {
       ) : (
         ""
       )}
-      {section2 ? <ServiceSection2 /> : ""}
+      {section2 ? (
+        <>
+          <ServiceSection2 />
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 };
