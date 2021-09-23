@@ -1,7 +1,7 @@
 import React from "react";
 //import DataTable from "react-data-table-component";
 import "./css/homeSection1.css";
-import { faEdit, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
@@ -53,18 +53,33 @@ const BlogSection = () => {
   // }
 
   function getData() {
-    axios
-      .get(AppUrl.base_url + "blogsectionGet")
-      .then(function (response) {
-        if (response) {
-          setData(response.data);
+    if (JSON.parse(localStorage.getItem("admin-info")) === "Login Successful") {
+      axios
+        .get(AppUrl.base_url + "blogsectionGet")
+        .then(function (response) {
+          if (response) {
+            setData(response.data);
 
-          //console.log(response.data);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+            //console.log(response.data);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
+      axios
+        .get(AppUrl.base_url + "blogsectionGetSuper")
+        .then(function (response) {
+          if (response) {
+            setData(response.data);
+
+            //console.log(response.data);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }
 
   // async function getData() {
@@ -206,6 +221,42 @@ const BlogSection = () => {
     closeDeleteModal(id);
   }
 
+  //approve data
+  async function approveData(id) {
+    let result = await fetch(AppUrl.base_url + "blogsectionApprove/" + id, {
+      method: "POST",
+    });
+
+    result = await result.json();
+
+    if (result.success) {
+      toast.success(result.success);
+    } else {
+      toast.error(result.error);
+    }
+
+    getData();
+    closeApproveModal(id);
+  }
+
+  //decline data
+  async function declineData(id) {
+    let result = await fetch(AppUrl.base_url + "blogsectionDecline/" + id, {
+      method: "POST",
+    });
+
+    result = await result.json();
+
+    if (result.success) {
+      toast.success(result.success);
+    } else {
+      toast.error(result.error);
+    }
+
+    getData();
+    closeDeclineModal(id);
+  }
+
   // let title1;
   // data.map((item) => (title1 = item.homesection1_title));
 
@@ -265,6 +316,8 @@ const BlogSection = () => {
 
     closeUpdateModal(id);
     closeDeleteModal(id);
+    closeApproveModal(id);
+    closeDeclineModal(id);
 
     closeUpdateImageModal(image1, id);
     closeUpdateImageModal(image2, id);
@@ -315,6 +368,62 @@ const BlogSection = () => {
 
   function closeDeleteModal(id) {
     let element = document.getElementById("home_section_modal_delete_" + id);
+    ReactDOM.findDOMNode(element).classList.add(
+      "inactive_home_section_modal_delete"
+    );
+    ReactDOM.findDOMNode(element).classList.remove(
+      "active_home_section_modal_delete"
+    );
+
+    let element1 = document.getElementById("modal_blur_bg" + id);
+    ReactDOM.findDOMNode(element1).classList.add("inactive_modal_blur_bg");
+    ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
+  }
+
+  function openApproveModal(id) {
+    let element = document.getElementById("home_section_modal_approve_" + id);
+    ReactDOM.findDOMNode(element).classList.add(
+      "active_home_section_modal_delete"
+    );
+    ReactDOM.findDOMNode(element).classList.remove(
+      "inactive_home_section_modal_delete"
+    );
+
+    let element1 = document.getElementById("modal_blur_bg" + id);
+    ReactDOM.findDOMNode(element1).classList.add("active_modal_blur_bg");
+    ReactDOM.findDOMNode(element1).classList.remove("inactive_modal_blur_bg");
+  }
+
+  function closeApproveModal(id) {
+    let element = document.getElementById("home_section_modal_approve_" + id);
+    ReactDOM.findDOMNode(element).classList.add(
+      "inactive_home_section_modal_delete"
+    );
+    ReactDOM.findDOMNode(element).classList.remove(
+      "active_home_section_modal_delete"
+    );
+
+    let element1 = document.getElementById("modal_blur_bg" + id);
+    ReactDOM.findDOMNode(element1).classList.add("inactive_modal_blur_bg");
+    ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
+  }
+
+  function openDeclineModal(id) {
+    let element = document.getElementById("home_section_modal_decline_" + id);
+    ReactDOM.findDOMNode(element).classList.add(
+      "active_home_section_modal_delete"
+    );
+    ReactDOM.findDOMNode(element).classList.remove(
+      "inactive_home_section_modal_delete"
+    );
+
+    let element1 = document.getElementById("modal_blur_bg" + id);
+    ReactDOM.findDOMNode(element1).classList.add("active_modal_blur_bg");
+    ReactDOM.findDOMNode(element1).classList.remove("inactive_modal_blur_bg");
+  }
+
+  function closeDeclineModal(id) {
+    let element = document.getElementById("home_section_modal_decline_" + id);
     ReactDOM.findDOMNode(element).classList.add(
       "inactive_home_section_modal_delete"
     );
@@ -443,16 +552,34 @@ const BlogSection = () => {
                 <td>{item.blogsection_day + "," + item.blogsection_year}</td>
 
                 <td>
-                  <FontAwesomeIcon
-                    icon={faEdit}
-                    className="home_section_edit"
-                    onClick={() => openUpdateModal(item.blogsection_id)}
-                  />
-                  <FontAwesomeIcon
-                    icon={faTimes}
-                    className="home_section_delete"
-                    onClick={() => openDeleteModal(item.blogsection_id)}
-                  />
+                  {JSON.parse(localStorage.getItem("admin-info")) ===
+                  "Login Successful" ? (
+                    <>
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        className="home_section_edit"
+                        onClick={() => openUpdateModal(item.blogsection_id)}
+                      />
+                      <FontAwesomeIcon
+                        icon={faTimes}
+                        className="home_section_delete"
+                        onClick={() => openDeleteModal(item.blogsection_id)}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <FontAwesomeIcon
+                        icon={faCheck}
+                        className="home_section_edit"
+                        onClick={() => openApproveModal(item.blogsection_id)}
+                      />
+                      <FontAwesomeIcon
+                        icon={faTimes}
+                        className="home_section_delete"
+                        onClick={() => openDeclineModal(item.blogsection_id)}
+                      />
+                    </>
+                  )}
                 </td>
 
                 {/* update data modal */}
@@ -655,6 +782,66 @@ const BlogSection = () => {
                           onClick={() => deleteData(item.blogsection_id)}
                         >
                           Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* approve data modal */}
+                <div
+                  className="home_section_modal_delete inactive_home_section_modal_delete"
+                  id={"home_section_modal_approve_" + item.blogsection_id}
+                >
+                  <div className="card">
+                    <div className="card-header">
+                      <p>Approve Blogs Data</p>
+                      <FontAwesomeIcon
+                        icon={faTimes}
+                        className="home_section_delete"
+                        onClick={() => closeApproveModal(item.blogsection_id)}
+                      />
+                    </div>
+                    <div className="card-body">
+                      <label>Do you want to approve it?</label>
+
+                      <div className="form-group">
+                        <button
+                          className="btn btn-success form-control"
+                          type="button"
+                          onClick={() => approveData(item.blogsection_id)}
+                        >
+                          Approve
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* decline data modal */}
+                <div
+                  className="home_section_modal_delete inactive_home_section_modal_delete"
+                  id={"home_section_modal_decline_" + item.blogsection_id}
+                >
+                  <div className="card">
+                    <div className="card-header">
+                      <p>Decline Blogs Data</p>
+                      <FontAwesomeIcon
+                        icon={faTimes}
+                        className="home_section_delete"
+                        onClick={() => closeDeclineModal(item.blogsection_id)}
+                      />
+                    </div>
+                    <div className="card-body">
+                      <label>Do you want to decline it?</label>
+
+                      <div className="form-group">
+                        <button
+                          className="btn btn-danger form-control"
+                          type="button"
+                          onClick={() => declineData(item.blogsection_id)}
+                        >
+                          Decline
                         </button>
                       </div>
                     </div>

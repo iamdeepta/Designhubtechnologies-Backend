@@ -3,12 +3,12 @@ import "./css/login.css";
 import { useState } from "react";
 //import Login from "../pages/Login";
 import AppUrl from "../classes/AppUrl";
-import { useHistory } from "react-router";
+//import { useHistory } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LoginCard = () => {
-  const history = useHistory();
+  //const history = useHistory();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -34,9 +34,15 @@ const LoginCard = () => {
 
       if (result.error) {
         toast.error("Incorrect username or password");
+      } else if (result.success_top) {
+        localStorage.setItem("admin-info", JSON.stringify(result.success_top));
+        //localStorage.removeItem("admin-info");
+        //history.push("/home");
+        window.location.href = "/home";
       } else {
         localStorage.setItem("admin-info", JSON.stringify(result.success));
-        history.push("/home");
+        //localStorage.removeItem("top-info");
+        window.location.href = "/home";
       }
     }
   }
