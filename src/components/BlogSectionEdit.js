@@ -35,7 +35,7 @@ const BlogSectionEdit = ({
     formData.append("description2_up", description2_up);
     formData.append("tag_up", tag_up);
     formData.append("category_up", category_up);
-    formData.append("time_up", title_up);
+    formData.append("time_up", time_up);
 
     let result = await fetch(AppUrl.base_url + "blogsectionUpdate/" + id, {
       method: "POST",
@@ -119,7 +119,7 @@ const BlogSectionEdit = ({
         <label>Time:</label>
         <div className="form-group">
           <input
-            type="text"
+            type="number"
             placeholder="Time"
             className="form-control"
             value={time_up}

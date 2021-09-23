@@ -7,10 +7,10 @@ import { toast } from "react-toastify";
 //import { ToastContainer, toast } from "react-toastify";
 
 const HomeSection2Edit = ({
-  main_title_data,
+  //main_title_data,
   title_data,
   description_data,
-  category_data,
+  //category_data,
   id_data,
   edit_data,
   get_data,
@@ -18,18 +18,18 @@ const HomeSection2Edit = ({
   close_update_modal,
 }) => {
   //update states
-  const [main_title_up, setMainTitleUp] = useState(main_title_data);
+  //const [main_title_up, setMainTitleUp] = useState(main_title_data);
   const [title_up, setTitleUp] = useState(title_data);
   const [description_up, setDescriptionUp] = useState(description_data);
-  const [category_up, setCategoryUp] = useState(category_data);
+  //const [category_up, setCategoryUp] = useState(category_data);
 
   //update data
   async function updateData(id) {
     const formData = new FormData();
-    formData.append("main_title_up", main_title_up);
+    //formData.append("main_title_up", main_title_up);
     formData.append("title_up", title_up);
     formData.append("description_up", description_up);
-    formData.append("category_up", category_up);
+    //formData.append("category_up", category_up);
 
     let result = await fetch(AppUrl.base_url + "homesection2Update/" + id, {
       method: "POST",
@@ -53,7 +53,7 @@ const HomeSection2Edit = ({
       {/* <ToastContainer /> */}
 
       <div className="card-body">
-        <label>Main Title:</label>
+        {/* <label>Main Title:</label>
         <div className="form-group">
           <input
             type="text"
@@ -62,7 +62,7 @@ const HomeSection2Edit = ({
             value={main_title_up}
             onChange={(e) => setMainTitleUp(e.target.value)}
           />
-        </div>
+        </div> */}
 
         <label>Title:</label>
         <div className="form-group">
@@ -86,7 +86,7 @@ const HomeSection2Edit = ({
           />
         </div>
 
-        <label>Category:</label>
+        {/* <label>Category:</label>
         <div className="form-group">
           <input
             type="text"
@@ -95,7 +95,7 @@ const HomeSection2Edit = ({
             value={category_up}
             onChange={(e) => setCategoryUp(e.target.value)}
           />
-        </div>
+        </div> */}
 
         <div className="form-group">
           <button

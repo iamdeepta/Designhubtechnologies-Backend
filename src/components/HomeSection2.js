@@ -12,10 +12,10 @@ import axios from "axios";
 import HomeSection2Edit from "./HomeSection2Edit";
 
 const HomeSection2 = () => {
-  const [main_title, setMainTitle] = useState("");
+  //const [main_title, setMainTitle] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  //const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
 
   const [data, setData] = useState([]);
@@ -72,10 +72,10 @@ const HomeSection2 = () => {
   //add data
   async function addData() {
     const formData = new FormData();
-    formData.append("main_title", main_title);
+    //formData.append("main_title", main_title);
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("category", category);
+    //formData.append("category", category);
     formData.append("image", image);
 
     let result = await fetch(AppUrl.base_url + "homesection2Add", {
@@ -87,10 +87,10 @@ const HomeSection2 = () => {
 
     if (result.success) {
       toast.success(result.success);
-      setMainTitle("");
+      //setMainTitle("");
       setTitle("");
       setDescription("");
-      setCategory("");
+      //setCategory("");
       setImage("");
     } else {
       toast.error(result.error);
@@ -304,11 +304,11 @@ const HomeSection2 = () => {
         <table className="table table-responsive table-striped table-bordered">
           <thead className="thead-dark">
             <tr>
-              <th scope="col">Main Title</th>
+              {/* <th scope="col">Main Title</th> */}
               <th scope="col">Image</th>
               <th scope="col">Title</th>
               <th scope="col">Description</th>
-              <th scope="col">Category</th>
+              {/* <th scope="col">Category</th> */}
 
               <th scope="col">Action</th>
             </tr>
@@ -316,7 +316,7 @@ const HomeSection2 = () => {
           <tbody>
             {data.map((item, index) => (
               <tr key={item.homesection2_id}>
-                <td>{item.homesection2_main_title}</td>
+                {/* <td>{item.homesection2_main_title}</td> */}
                 <td>
                   <img
                     src={AppUrl.image_url + item.homesection2_image}
@@ -332,7 +332,7 @@ const HomeSection2 = () => {
 
                 <td>{item.homesection2_title}</td>
                 <td>{item.homesection2_description}</td>
-                <td>{item.homesection2_category}</td>
+                {/* <td>{item.homesection2_category}</td> */}
 
                 <td>
                   <FontAwesomeIcon
@@ -362,10 +362,10 @@ const HomeSection2 = () => {
                       />
                     </div>
                     <HomeSection2Edit
-                      main_title_data={item.homesection2_main_title}
+                      // main_title_data={item.homesection2_main_title}
                       title_data={item.homesection2_title}
                       description_data={item.homesection2_description}
-                      category_data={item.homesection2_category}
+                      //category_data={item.homesection2_category}
                       id_data={item.homesection2_id}
                       edit_data={data}
                       index_data={index}
@@ -484,7 +484,7 @@ const HomeSection2 = () => {
             />
           </div>
           <div className="card-body">
-            <label>Main Title:</label>
+            {/* <label>Main Title:</label>
             <div className="form-group">
               <input
                 type="text"
@@ -493,7 +493,7 @@ const HomeSection2 = () => {
                 value={main_title}
                 onChange={(e) => setMainTitle(e.target.value)}
               />
-            </div>
+            </div> */}
 
             <label>Title:</label>
             <div className="form-group">
@@ -517,7 +517,7 @@ const HomeSection2 = () => {
               />
             </div>
 
-            <label>Category:</label>
+            {/* <label>Category:</label>
             <div className="form-group">
               <input
                 type="text"
@@ -526,7 +526,7 @@ const HomeSection2 = () => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               />
-            </div>
+            </div> */}
 
             <label>Image:</label>
             <div className="form-group">
