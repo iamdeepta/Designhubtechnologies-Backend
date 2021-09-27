@@ -13,6 +13,7 @@ import HomeSection6Main from "./HomeSection6Main";
 import HomeSection7Main from "./HomeSection7Main";
 import HomeSection4Main from "./HomeSection4Main";
 import HomeSection2Header from "./HomeSection2Header";
+import HomeSection1Main from "./HomeSection1Main";
 
 const HomeHeader = () => {
   const [section1, setSection1] = useState(false);
@@ -130,7 +131,15 @@ const HomeHeader = () => {
           </div>
         </div>
       </div>
-      {section1 ? <HomeSection1 /> : ""}
+      {section1 ? (
+        <>
+          <HomeSection1 />
+          <br />
+          <HomeSection1Main />
+        </>
+      ) : (
+        ""
+      )}
       {section2 ? (
         <>
           <HomeSection2Header />
