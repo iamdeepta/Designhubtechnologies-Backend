@@ -15,11 +15,13 @@ const HomeSection6Main = () => {
   const [main_title, setMainTitle] = useState("");
   const [main_description, setMainDescription] = useState("");
   const [main_image, setMainImage] = useState("");
+  const [main_image1, setMainImage1] = useState("");
 
   const [main_data, setMainData] = useState([]);
 
   //update image state
   const [main_image_up, setMainImageUp] = useState("");
+  const [main_image1_up, setMainImage1Up] = useState("");
 
   // useEffect(() => {
   //   getData();
@@ -88,6 +90,7 @@ const HomeSection6Main = () => {
     formData.append("main_title", main_title);
     formData.append("main_description", main_description);
     formData.append("main_image", main_image);
+    formData.append("main_image1", main_image1);
 
     let result = await fetch(AppUrl.base_url + "homesection6MainAdd", {
       method: "POST",
@@ -115,6 +118,31 @@ const HomeSection6Main = () => {
 
     let result = await fetch(
       AppUrl.base_url + "homesection6MainUpdateImage/" + name,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    result = await result.json();
+
+    if (result.success) {
+      toast.success(result.success);
+
+      getMainData();
+      closeUpdateImageModalMain(name, id);
+    } else {
+      toast.error(result.error);
+    }
+  }
+
+  //update image1
+  async function updateMainImage1(name, id) {
+    const formData = new FormData();
+    formData.append("main_image1_up", main_image1_up);
+
+    let result = await fetch(
+      AppUrl.base_url + "homesection6MainUpdateImage1/" + name,
       {
         method: "POST",
         body: formData,
@@ -245,7 +273,7 @@ const HomeSection6Main = () => {
     ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
   }
 
-  function closeModalMain(id, id1) {
+  function closeModalMain(id, id1, image1) {
     let element1 = document.getElementById("modal_blur_bg" + id);
     ReactDOM.findDOMNode(element1).classList.add("inactive_modal_blur_bg");
     ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
@@ -255,6 +283,7 @@ const HomeSection6Main = () => {
     closeApproveModalMain(id);
     closeDeclineModalMain(id);
     closeUpdateImageModalMain(id1, id);
+    closeUpdateImage1ModalMain(image1, id);
   }
 
   function openUpdateModalMain(id) {
@@ -413,6 +442,20 @@ const HomeSection6Main = () => {
     ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
   }
 
+  function closeUpdateImage1ModalMain(id, id1) {
+    let element = document.getElementById(id);
+    ReactDOM.findDOMNode(element).classList.add(
+      "inactive_home_section_modal_image_update"
+    );
+    ReactDOM.findDOMNode(element).classList.remove(
+      "active_home_section_modal_image_update"
+    );
+
+    let element1 = document.getElementById("modal_blur_bg" + id1);
+    ReactDOM.findDOMNode(element1).classList.add("inactive_modal_blur_bg");
+    ReactDOM.findDOMNode(element1).classList.remove("active_modal_blur_bg");
+  }
+
   return (
     <>
       <ToastContainer />
@@ -431,7 +474,8 @@ const HomeSection6Main = () => {
             <tr>
               <th scope="col">Title</th>
               <th scope="col">Description</th>
-              <th scope="col">Image</th>
+              <th scope="col">Logo Image</th>
+              <th scope="col">Work Image</th>
 
               <th scope="col">Action</th>
             </tr>
@@ -448,6 +492,19 @@ const HomeSection6Main = () => {
                     onClick={() =>
                       openModalImageMain(
                         item.homesection6_main_image,
+                        item.homesection6_main_id
+                      )
+                    }
+                  />
+                </td>
+
+                <td>
+                  <img
+                    src={AppUrl.image_url + item.homesection6_main_image1}
+                    alt={item.homesection6_main_title + "work image"}
+                    onClick={() =>
+                      openModalImageMain(
+                        item.homesection6_main_image1,
                         item.homesection6_main_id
                       )
                     }
@@ -562,6 +619,54 @@ const HomeSection6Main = () => {
                           onClick={() =>
                             updateMainImage(
                               item.homesection6_main_image,
+                              item.homesection6_main_id
+                            )
+                          }
+                        >
+                          Update
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* image1 update modal */}
+                <div
+                  className="home_section_modal_image_update inactive_home_section_modal_image_update"
+                  id={item.homesection6_main_image1}
+                >
+                  <div className="card">
+                    <div className="card-header">
+                      <p>Update Work Image Data</p>
+                      <FontAwesomeIcon
+                        icon={faTimes}
+                        className="home_section_delete"
+                        onClick={() =>
+                          closeUpdateImageModalMain(
+                            item.homesection6_main_image1,
+                            item.homesection6_main_id
+                          )
+                        }
+                      />
+                    </div>
+                    <div className="card-body">
+                      <label>Work Image:</label>
+                      <div className="form-group">
+                        <input
+                          type="file"
+                          placeholder="Work Image"
+                          className="form-control"
+                          onChange={(e) => setMainImage1Up(e.target.files[0])}
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <button
+                          className="btn btn-success form-control"
+                          type="button"
+                          onClick={() =>
+                            updateMainImage1(
+                              item.homesection6_main_image1,
                               item.homesection6_main_id
                             )
                           }
@@ -690,7 +795,8 @@ const HomeSection6Main = () => {
                   onClick={() =>
                     closeModalMain(
                       item.homesection6_main_id,
-                      item.homesection6_main_image
+                      item.homesection6_main_image,
+                      item.homesection6_main_image1
                     )
                   }
                 ></div>
@@ -743,6 +849,15 @@ const HomeSection6Main = () => {
                 type="file"
                 className="form-control"
                 onChange={(e) => setMainImage(e.target.files[0])}
+              />
+            </div>
+
+            <label>Work Image:</label>
+            <div className="form-group">
+              <input
+                type="file"
+                className="form-control"
+                onChange={(e) => setMainImage1(e.target.files[0])}
               />
             </div>
 
