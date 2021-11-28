@@ -24,6 +24,8 @@ const BlogSection = () => {
 
   const [data, setData] = useState([]);
 
+  const [loader, setLoader] = useState(false);
+
   //update image state
   const [image1_up, setImage1Up] = useState("");
   const [image2_up, setImage2Up] = useState("");
@@ -92,6 +94,7 @@ const BlogSection = () => {
 
   //add data
   async function addData() {
+    setLoader(true);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description1", description1);
@@ -121,8 +124,10 @@ const BlogSection = () => {
       setImage1("");
       setImage2("");
       setImage3("");
+      setLoader(false);
     } else {
       toast.error(result.error);
+      setLoader(false);
     }
 
     getData();
@@ -979,13 +984,27 @@ const BlogSection = () => {
             </div>
 
             <div className="form-group">
-              <button
-                className="btn btn-primary form-control"
-                type="button"
-                onClick={() => addData()}
-              >
-                Add
-              </button>
+              {loader ? (
+                <>
+                  <button
+                    className="btn btn-primary form-control"
+                    type="button"
+                    disabled={true}
+                  >
+                    Please wait...
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="btn btn-primary form-control"
+                    type="button"
+                    onClick={() => addData()}
+                  >
+                    Add
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
