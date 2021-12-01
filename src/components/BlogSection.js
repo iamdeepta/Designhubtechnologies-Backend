@@ -135,6 +135,7 @@ const BlogSection = () => {
 
   //update image1
   async function updateImage1(name, id) {
+    setLoader(true);
     const formData = new FormData();
     formData.append("image1_up", image1_up);
 
@@ -153,13 +154,16 @@ const BlogSection = () => {
 
       getData();
       closeUpdateImageModal(name, id);
+      setLoader(false);
     } else {
       toast.error(result.error);
+      setLoader(false);
     }
   }
 
   //update image2
   async function updateImage2(name, id) {
+    setLoader(true);
     const formData = new FormData();
     formData.append("image2_up", image2_up);
 
@@ -178,13 +182,16 @@ const BlogSection = () => {
 
       getData();
       closeUpdateImageModal(name, id);
+      setLoader(false);
     } else {
       toast.error(result.error);
+      setLoader(false);
     }
   }
 
   //update image3
   async function updateImage3(name, id) {
+    setLoader(true);
     const formData = new FormData();
     formData.append("image3_up", image3_up);
 
@@ -203,8 +210,10 @@ const BlogSection = () => {
 
       getData();
       closeUpdateImageModal(name, id);
+      setLoader(false);
     } else {
       toast.error(result.error);
+      setLoader(false);
     }
   }
 
@@ -650,18 +659,32 @@ const BlogSection = () => {
                       </div>
 
                       <div className="form-group">
-                        <button
-                          className="btn btn-success form-control"
-                          type="button"
-                          onClick={() =>
-                            updateImage1(
-                              item.blogsection_image1,
-                              item.blogsection_id
-                            )
-                          }
-                        >
-                          Update
-                        </button>
+                        {loader ? (
+                          <>
+                            <button
+                              className="btn btn-success form-control"
+                              type="button"
+                              disabled={true}
+                            >
+                              Please wait...
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <button
+                              className="btn btn-success form-control"
+                              type="button"
+                              onClick={() =>
+                                updateImage1(
+                                  item.blogsection_image1,
+                                  item.blogsection_id
+                                )
+                              }
+                            >
+                              Update
+                            </button>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -698,18 +721,32 @@ const BlogSection = () => {
                       </div>
 
                       <div className="form-group">
-                        <button
-                          className="btn btn-success form-control"
-                          type="button"
-                          onClick={() =>
-                            updateImage2(
-                              item.blogsection_image2,
-                              item.blogsection_id
-                            )
-                          }
-                        >
-                          Update
-                        </button>
+                        {loader ? (
+                          <>
+                            <button
+                              className="btn btn-success form-control"
+                              type="button"
+                              disabled={true}
+                            >
+                              Please wait...
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <button
+                              className="btn btn-success form-control"
+                              type="button"
+                              onClick={() =>
+                                updateImage2(
+                                  item.blogsection_image2,
+                                  item.blogsection_id
+                                )
+                              }
+                            >
+                              Update
+                            </button>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -746,18 +783,32 @@ const BlogSection = () => {
                       </div>
 
                       <div className="form-group">
-                        <button
-                          className="btn btn-success form-control"
-                          type="button"
-                          onClick={() =>
-                            updateImage3(
-                              item.blogsection_image3,
-                              item.blogsection_id
-                            )
-                          }
-                        >
-                          Update
-                        </button>
+                        {loader ? (
+                          <>
+                            <button
+                              className="btn btn-success form-control"
+                              type="button"
+                              disabled={true}
+                            >
+                              Please wait...
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <button
+                              className="btn btn-success form-control"
+                              type="button"
+                              onClick={() =>
+                                updateImage3(
+                                  item.blogsection_image3,
+                                  item.blogsection_id
+                                )
+                              }
+                            >
+                              Update
+                            </button>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
