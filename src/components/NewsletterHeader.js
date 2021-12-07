@@ -2,13 +2,13 @@ import React from "react";
 import "./css/aboutHeader.css";
 //import { useState } from "react";
 
-const BlogHeader = () => {
+const NewsletterHeader = () => {
   return (
     <>
       <div className="container card about_header_card">
         <div className="card-body">
           <div className="row text-center about_text">
-            <p>Blogs</p>
+            <p>Newsletter</p>
           </div>
         </div>
       </div>
@@ -16,4 +16,4 @@ const BlogHeader = () => {
   );
 };
 
-export default BlogHeader;
+export default NewsletterHeader;

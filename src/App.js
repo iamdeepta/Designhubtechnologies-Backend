@@ -6,7 +6,8 @@ import { Route, Switch } from "react-router-dom";
 import ServicesDetails from "./pages/ServicesDetails";
 import Services from "./pages/Services";
 import Blog from "./pages/Blog";
-import BlogDetails from "./pages/BlogDetails";
+//import BlogDetails from "./pages/BlogDetails";
+import Newsletter from "./pages/Newsletter";
 import Login from "./pages/Login";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Redirect } from "react-router-dom";
@@ -24,7 +25,8 @@ const App = () => {
             <Route exact path="/services" component={Services} />
             <Route exact path="/services-details" component={ServicesDetails} />
             <Route exact path="/blog" component={Blog} />
-            <Route exact path="/blog-details" component={BlogDetails} />
+            {/* <Route exact path="/blog-details" component={BlogDetails} /> */}
+            <Route exact path="/newsletter" component={Newsletter} />
             <Route exact path="/" component={Login} />
 
             <Redirect to="/home" />

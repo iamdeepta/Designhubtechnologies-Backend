@@ -119,11 +119,16 @@ const Header = () => {
                 <Link to="/blog" className="sub_link">
                   <p>Blog</p>
                 </Link>
-                <Link to="/blog-details" className="sub_link">
+                {/* <Link to="/blog-details" className="sub_link">
                   <p>Blog Details</p>
-                </Link>
+                </Link> */}
               </div>
             </div>
+            <p>
+              <Link to="/newsletter" className="header_home_text">
+                Newsletter
+              </Link>
+            </p>
           </div>
           <div className="header_logout_div">
             <Link to="#">

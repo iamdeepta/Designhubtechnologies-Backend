@@ -82,11 +82,15 @@ const Sidebar = () => {
               <Link to="/blog" className="sidebar_link">
                 <li>Blog</li>
               </Link>
-              <Link to="/blog-details" className="sidebar_link">
+              {/* <Link to="/blog-details" className="sidebar_link">
                 <li>Blog Details</li>
-              </Link>
+              </Link> */}
             </ul>
           </li>
+          <hr />
+          <Link to="/newsletter" className="sidebar_link">
+            <li className="sidebar_li">Newsletter</li>
+          </Link>
           <hr />
           <Link to="/" className="sidebar_link">
             <li className="sidebar_li">Logout</li>
