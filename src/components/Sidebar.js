@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
   const [servicesOpen1, setServicesOpen1] = useState(false);
   const [blogOpen1, setBlogOpen1] = useState(false);
+  const [contactOpen1, setContactOpen1] = useState(false);
 
   function closeSidebar() {
     let element = document.getElementById("sidebar_div");
@@ -27,6 +28,10 @@ const Sidebar = () => {
 
   function blogOpen() {
     setBlogOpen1(!blogOpen1);
+  }
+
+  function contactOpen() {
+    setContactOpen1(!contactOpen1);
   }
 
   return (
@@ -91,6 +96,29 @@ const Sidebar = () => {
           <Link to="/newsletter" className="sidebar_link">
             <li className="sidebar_li">Newsletter</li>
           </Link>
+          <hr />
+          <li className="sidebar_li" onClick={() => contactOpen()}>
+            Contact Us
+            <FontAwesomeIcon
+              icon={faChevronDown}
+              className="sidebar_down_icon"
+            />
+            <ul
+              className={
+                contactOpen1
+                  ? "sidebar_sub_ul active_sidebar_sub_contact_li"
+                  : "sidebar_sub_ul"
+              }
+              onClick={() => closeSidebar()}
+            >
+              <Link to="/contact-messages" className="sidebar_link">
+                <li>Messages</li>
+              </Link>
+              <Link to="/contact-details" className="sidebar_link">
+                <li>Details</li>
+              </Link>
+            </ul>
+          </li>
           <hr />
           <Link to="/" className="sidebar_link">
             <li className="sidebar_li">Logout</li>

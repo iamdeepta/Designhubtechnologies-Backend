@@ -41,12 +41,14 @@
 }
 
 .inactive_header_sub_services_div,
-.inactive_header_sub_blog_div {
+.inactive_header_sub_blog_div,
+.inactive_header_sub_contact_div {
   display: none;
 }
 
 .active_header_sub_services_div,
-.active_header_sub_blog_div {
+.active_header_sub_blog_div,
+.active_header_sub_contact_div {
   position: fixed;
   z-index: 2;
   top: 50px;

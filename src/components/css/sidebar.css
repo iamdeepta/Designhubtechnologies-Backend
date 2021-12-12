@@ -66,6 +66,10 @@
     display: block;
   }
 
+  .active_sidebar_sub_contact_li {
+    display: block;
+  }
+
   .sidebar_down_icon {
     font-size: 12px;
   }

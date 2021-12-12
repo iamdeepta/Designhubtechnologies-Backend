@@ -15,6 +15,7 @@ import { useHistory } from "react-router";
 const Header = () => {
   const [openService, setOpenService] = useState(true);
   const [openBlog, setOpenBlog] = useState(true);
+  const [openContact, setOpenContact] = useState(true);
 
   const history = useHistory();
 
@@ -40,11 +41,19 @@ const Header = () => {
   function servicesToggle() {
     setOpenService(!openService);
     setOpenBlog(true);
+    setOpenContact(true);
   }
 
   function blogToggle() {
     setOpenService(true);
+    setOpenContact(true);
     setOpenBlog(!openBlog);
+  }
+
+  function contactToggle() {
+    setOpenContact(!openContact);
+    setOpenService(true);
+    setOpenBlog(true);
   }
 
   function logout() {
@@ -129,6 +138,34 @@ const Header = () => {
                 Newsletter
               </Link>
             </p>
+            <div>
+              <p
+                className="header_services_menu"
+                id="header_contact_menu"
+                onClick={() => contactToggle()}
+              >
+                Contact Us{" "}
+                <FontAwesomeIcon
+                  icon={faChevronDown}
+                  className="contact_dropdown_icon"
+                />
+              </p>
+              <div
+                className={
+                  openContact
+                    ? "inactive_header_sub_contact_div"
+                    : "active_header_sub_contact_div"
+                }
+                id="header_sub_contact_div"
+              >
+                <Link to="/contact-messages" className="sub_link">
+                  <p>Messages</p>
+                </Link>
+                <Link to="/contact-details" className="sub_link">
+                  <p>Contact Details</p>
+                </Link>
+              </div>
+            </div>
           </div>
           <div className="header_logout_div">
             <Link to="#">

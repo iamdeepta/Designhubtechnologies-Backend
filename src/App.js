@@ -8,6 +8,8 @@ import Services from "./pages/Services";
 import Blog from "./pages/Blog";
 //import BlogDetails from "./pages/BlogDetails";
 import Newsletter from "./pages/Newsletter";
+import ContactMessages from "./pages/ContactMessages";
+import ContactDetails from "./pages/ContactDetails";
 import Login from "./pages/Login";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Redirect } from "react-router-dom";
@@ -27,6 +29,8 @@ const App = () => {
             <Route exact path="/blog" component={Blog} />
             {/* <Route exact path="/blog-details" component={BlogDetails} /> */}
             <Route exact path="/newsletter" component={Newsletter} />
+            <Route exact path="/contact-messages" component={ContactMessages} />
+            <Route exact path="/contact-details" component={ContactDetails} />
             <Route exact path="/" component={Login} />
 
             <Redirect to="/home" />
